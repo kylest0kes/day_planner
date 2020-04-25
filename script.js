@@ -11,6 +11,8 @@ setInterval(function() {
     timeAndDay.text(currentDayAndTime)
 }, 1000);
 
+getValue()
+
 //function to get the value of the row
 function getValue() {
     for(var i = 0; i < rowElements.length; i++) {
@@ -30,27 +32,20 @@ function getValue() {
     }
 }
 
-getValue()
-
-
-
-
-    
-// Saving stuff
-    // correlate what you save to the date it was saved
-    // on initial load, get today's date, compare with what's in local storage, and save that in localstorage
-    // when to wipe the events (when the date in localstorage is different from today's date)
-
 
 $(document).ready(function(){
-
     //function for on click of save button to save everything to localstorage
     $(".saveBtn").on("click", function() {
         $(this).siblings('.hour')
         //console.log($(this).siblings('.hour').attr('data-hour'))
         $(this).siblings('textarea').val()
-        console.log($(this).siblings('textarea').val())
+        //console.log($(this).siblings('textarea').val())
+
+        localStorage.setItem(JSON.stringify($(this).siblings('.hour').attr('data-hour')), $(this).siblings('textarea').val());
     });
-    
 })
+
+function renderTodos() {
+    
+}
 
