@@ -13,6 +13,8 @@ setInterval(function() {
 
 getValue()
 
+renderTodos()
+
 //function to get the value of the row
 function getValue() {
     for(var i = 0; i < rowElements.length; i++) {
@@ -46,6 +48,9 @@ $(document).ready(function(){
 })
 
 function renderTodos() {
-    
+    for (var i = 0; i < localStorage.length; i++){
+        
+        
+    }
 }
 
