@@ -2,14 +2,26 @@ var timeAndDay = $("#currentDay");
 var rowElements = $(".row")
 var currentDate = moment().format('MMMM Do YYYY');
 var timeBlock = $('.hour');
+var taskInput = $("#taskInput");
 
 var currentDayAndTime = moment().format('dddd | MMMM Do YYYY | h:mm:ss a');
-    timeAndDay.text(currentDayAndTime)
+    timeAndDay.text(currentDayAndTime);
 
+//function to set the calender date and the time
 setInterval(function() {
     var currentDayAndTime = moment().format('dddd | MMMM Do YYYY | h:mm:ss a');
     timeAndDay.text(currentDayAndTime)
 }, 1000);
+
+$(document).ready(function(){
+    //function for on click of save button to save everything to localstorage
+    $(".saveBtn").on("click", function() {
+        $(this).siblings('.hour')
+        $(this).siblings('textarea').val()
+
+        localStorage.setItem(JSON.stringify($(this).siblings('.hour').attr('data-hour')), $(this).siblings('textarea').val());
+    });
+})
 
 getValue()
 
@@ -34,21 +46,12 @@ function getValue() {
     }
 }
 
-
-$(document).ready(function(){
-    //function for on click of save button to save everything to localstorage
-    $(".saveBtn").on("click", function() {
-        $(this).siblings('.hour')
-        //console.log($(this).siblings('.hour').attr('data-hour'))
-        $(this).siblings('textarea').val()
-        //console.log($(this).siblings('textarea').val())
-
-        localStorage.setItem(JSON.stringify($(this).siblings('.hour').attr('data-hour')), $(this).siblings('textarea').val());
-    });
-})
-
+//function to render todos on the page on refresh
 function renderTodos() {
     for (var i = 0; i < localStorage.length; i++){
+        var key = localStorage.key(i);
+        var task = localStorage.getItem(key);
+        console.log(key, "|", task);
         
         
     }
